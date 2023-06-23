@@ -1,0 +1,15 @@
+{
+    "name": "leticia/apitarefas",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Leticia\\Apitarefas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "leticia"
+        }
+    ],
+    "require": {}
+}

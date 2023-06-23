@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="section-title text-primary mb-5">Informações da vaga</h2>
+
+
+
+
+            <img src="assets/uploads/usuario/<?= $this->view->dados['imagem'] ?>" class="img-fluid rounded-start" width="64">
+
+            <h2 class="section-title text-primary mb-2 mt-2 fs-4"><?= $this->view->dados['titulo'] ?></h2>
+            <p class="fw-bold fs-5 mb-0"><?= $this->view->dados['nome'] . ' ' . $this->view->dados['sobrenome'] ?></p>
+
+
+            <?php
+            $dias = diasDatas(date('Y-m-d', strtotime($this->view->dados['created_at'])), null);
+            $data = date('d/m/Y', strtotime($this->view->dados['created_at'])) . ' - ' . $dias;
+            $data .= $dias > 1 ? " dias atrás" : " dia atrás";
+            ?>
+            <p><?= $data; ?> </p> 
+            <!-- <span><img src="assets/img/novo2.svg" width="32"></span> -->
+            <p>
+                <?php $qtde_vaga = $this->view->dados['qtde_vaga'] > 1 ? " vagas" : " vaga" ?>
+                <?= $this->view->dados['modalidade'] . ' - ' . $this->view->dados['qtde_vaga'] . $qtde_vaga ?>
+            </p>
+
+
+            <p class="fs-3"><span class="badge bg-success"><?= formatarMoeda($this->view->dados['salario'], "R$", 2) ?></span></p>
+
+            <p class="fw-bold mb-0"><?= "Local de Trabalho:" ?></p>
+            <p><?= $this->view->dados['local_trabalho']; ?></p>
+
+
+            <p class="fw-bold mb-0"><?= "Descrição:" ?></p>
+            <p><?= $this->view->dados['descricao']; ?></p>
+
+            <p class="fw-bold mb-0"><?= "Habilidades:" ?></p>
+            <?php
+            $skills = explode(";", $this->view->dados['habilidade']);
+
+            foreach ($skills as $key => $valor) {
+            ?>
+                <span class="badge bg-primary"><?= $valor ?></span>
+            <?php
+            }
+            ?>
+
+            <p class="fw-bold fs-6 mt-3 mb-1"><?= "Interessados entrar em contato por:" ?></p>
+            <p class="mb-0">Telefone: <?= $this->view->dados['telefone']; ?></p>
+            <p>E-mail: <?= $this->view->dados['email']; ?></p>
+
+            <a href="/"><button type="button" class="btn btn-primary btn-sm">Voltar</button></a>
+
+        </div>
+    </div>
+
+</div>

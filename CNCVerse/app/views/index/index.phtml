@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <h2 class="section-title">Veja as útimas vagas adicionadas</h2>
+        </div>
+
+        <?php
+        foreach ($this->view->dados as $indice => $emprego) { ?>
+
+            <div class="col-xl-12 col-md-12 mb-4">
+                <div class="card">
+                    <div class="two">
+                        <?php // $dias = 8;?>
+                        <?php $dias = diasDatas(date('Y-m-d', strtotime($emprego['created_at'])), null) ?>
+                        <div class="d-flex justify-content-end"><?= $dias < 7 ? "<img src='assets/img/novo.svg' width='50'>" : ""; ?></div>
+                        <div class="px-3 <?= $dias > 7 ? "mt-4" : ""?>">
+                            <div class="round"><img src="assets/uploads/usuario/<?= $emprego['imagem']; ?>" width="50" /></div>
+                        </div>
+                        <div class="px-3 pt-3">
+                            <h3 class="name"><?= $emprego['titulo']; ?></h3>
+                            <p class="quote2"><?= $emprego['descricao']; ?></p>
+                        </div>
+
+                        <div class="d-flex justify-content-start px-3 align-items-center">
+                            <i class="bi bi-list-task"></i>
+                            <span class="quote2 pl-2"> <?= $emprego['modalidade']; ?></span>
+                        </div>
+
+                        <div class="d-flex justify-content-start px-3 align-items-center">
+                            <i class="bi bi-person-add"></i>
+                            <span class="quote2 pl-2"> <?= $emprego['qtde_vaga'] > 1 ? $emprego['qtde_vaga'] . ' vagas' : $emprego['qtde_vaga'] . ' vaga'; ?></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between  px-3 align-items-center pb-3">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <i class="bi bi-calendar3"></i>
+                                <span class="quote2 pl-2"><?= date('d/m/Y', strtotime($emprego['created_at'])) . ' - ' . $dias . ' dia atrás.'  ?></span>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="/ver_vaga?id=<?= $emprego['id'];?>"><button type="button" class="btn btn-primary btn-sm">Ver Vaga</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        <?php } ?>
+
+    </div>
+</div>
